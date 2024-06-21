@@ -1,0 +1,31 @@
+# AWS EC2 인스턴스를 생성하는 템플릿
+# parameter, output 정의
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Hello, CloudFormation
+
+Parameters:
+  KeyName:
+    Type: String
+    Default: cloud2024
+    Description: Please insert instance's Private Key Name
+  TagName:
+    Type: String
+    Description: Please insert Tag Name Value
+
+
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-01ed8ade75d4eee2f
+      InstanceType: t2.micro
+      KeyName: !Ref KeyName
+      Tags:
+        - Key: Name
+          Value : !Ref TagName
+
+
+Outputs:
+  InstanceIP:
+    Value: !GetAtt MyInstance.PublicIp
+    Description: print created instance's public IP address

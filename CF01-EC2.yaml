@@ -1,0 +1,14 @@
+# AWS EC2 인스턴스를 생성하는 템플릿
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Hello, CloudFormation
+
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-01ed8ade75d4eee2f
+      InstanceType: t2.micro
+      KeyName: cloud2024
+      Tags:
+        - Key: Name
+          Value : nginx
